@@ -19,6 +19,7 @@ TagManager:
   - up
   - forward
   - down
+  - gate
   layers:
   - Default
   - TransparentFX

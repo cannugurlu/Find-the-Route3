@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -17,6 +18,8 @@ public class moveController2 : MonoBehaviour
     public bool win = false;
     ButtonManager buttonManager;
     public ParticleSystem konfeti;
+    public bool isAvailable = true;
+    
 
     // Start is called before the first frame update
 
@@ -36,7 +39,6 @@ public class moveController2 : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -84,12 +86,28 @@ public class moveController2 : MonoBehaviour
     
     void OnTriggerStay(Collider other)
     {
-        if(this.gameObject.name== objName && isMove)
+       
+        
+
+        if (this.gameObject.name== objName && isMove)
         {
-            if (other.gameObject.tag == "yol" || other.gameObject.tag == "up" || other.gameObject.tag == "forward" || other.gameObject.tag == "down")
+            
+           
+            if ((other.gameObject.tag == "yol" || other.gameObject.tag == "up" || other.gameObject.tag == "forward" || other.gameObject.tag == "down"))
             {
-                this.gameObject.GetComponent<Rigidbody>().velocity = velocity * transform.forward * Time.deltaTime;
-                isTrigger = true;
+             
+
+                if (isAvailable)
+                {
+                    print("niye geliyon buraya");
+                    this.gameObject.GetComponent<Rigidbody>().velocity = velocity * transform.forward * Time.deltaTime;
+                    isTrigger = true;
+                }
+                else
+                {
+                    print("e buraya geldi");
+                    this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
             }
 
             if (other.gameObject.tag == "start")
@@ -149,7 +167,29 @@ public class moveController2 : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        if(this.gameObject.name == objName)
+        isAvailable= true;
+        if (other.gameObject.CompareTag("gate"))
+        {
+
+            Color colorCar = transform.GetChild(1).GetComponent<MeshRenderer>().material.color;
+            Color colorGate = other.gameObject.GetComponent<MeshRenderer>().material.color;
+
+
+
+            if (ColorsApproximatelyEqual(colorCar, colorGate, 0.5f))
+            {
+                print("Car color: " + colorCar);
+                print("Gate color: " + colorGate);
+                isAvailable = true;
+            }
+            else
+            {
+                print("is available false oldu");
+                isAvailable = false;
+            }
+        }
+
+        if (this.gameObject.name == objName)
         {
             if (other.gameObject.tag == "yol")
             {
@@ -158,7 +198,6 @@ public class moveController2 : MonoBehaviour
         }
         if (other.gameObject.tag == "turn")
         {
-                //Destroy(other.gameObject);
                 yolYRot = other.transform.rotation.eulerAngles.y;
 
                 if (Mathf.RoundToInt(yolYRot + carYRot) % 180 == 0)
@@ -203,15 +242,6 @@ public class moveController2 : MonoBehaviour
 
 
     }
-
-    void triggerController()
-    {
-        if (!isTrigger)
-        {
-            print("kaybettin");
-        }
-    }
-
     
     
 
@@ -236,5 +266,15 @@ public class moveController2 : MonoBehaviour
         Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
 
         return hit;
+    }
+
+    private bool ColorsApproximatelyEqual(Color color1, Color color2, float tolerance)
+    {
+        float rDiff = Mathf.Abs(color1.r - color2.r);
+        float gDiff = Mathf.Abs(color1.g - color2.g);
+        float bDiff = Mathf.Abs(color1.b - color2.b);
+        float aDiff = Mathf.Abs(color1.a - color2.a);
+
+        return rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance && aDiff <= tolerance;
     }
 }

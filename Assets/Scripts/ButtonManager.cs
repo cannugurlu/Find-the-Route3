@@ -58,7 +58,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Restart()
     {
-        if((SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 8) && GameObject.Find("car")==null)
+
+        if((SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 8 || SceneManager.GetActiveScene().buildIndex == 11) && GameObject.Find("car")==null)
         {
            // GameObject.Find("Boom").GetComponent<ParticleSystem>().Stop();
             newcar = Instantiate(carPrefab, carPos, carRot);

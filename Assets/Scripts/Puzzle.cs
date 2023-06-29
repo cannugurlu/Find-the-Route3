@@ -23,7 +23,7 @@ public class Puzzle : MonoBehaviour
     private void OnMouseDown()
     {
         
-        if((SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 8))
+        if((SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 8 || SceneManager.GetActiveScene().buildIndex == 11))
         {
             cars = null;
             cars = GameObject.FindGameObjectsWithTag("Car");
