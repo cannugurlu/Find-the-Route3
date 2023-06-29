@@ -69,7 +69,20 @@ public class moveController2 : MonoBehaviour
                         isClickable = false;
                     }
                     
-                }else if(gameObject.GetComponent<Rigidbody>().velocity != Vector3.zero) // hareket ederken baþka yere týklandýðýnda hareket etmeye devam etmesi için
+                }
+                else if (hit.collider.CompareTag("bas3") && isClickable)
+                {
+                    objName = "car3";
+
+                    if (this.gameObject.name == objName)
+                    {
+                        print("heyyo");
+                        isMove = true;
+                        isClickable = false;
+                    }
+
+                }
+                else if(gameObject.GetComponent<Rigidbody>().velocity != Vector3.zero) // hareket ederken baþka yere týklandýðýnda hareket etmeye devam etmesi için
                 {
                     isMove = true;
                 }

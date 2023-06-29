@@ -58,58 +58,7 @@ public class ButtonManager : MonoBehaviour
 
     public void Restart()
     {
-
-        if((SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 8 || SceneManager.GetActiveScene().buildIndex == 11) && GameObject.Find("car")==null)
-        {
-           // GameObject.Find("Boom").GetComponent<ParticleSystem>().Stop();
-            newcar = Instantiate(carPrefab, carPos, carRot);
-            newcar.name = "car";
-        }
-        if(newcar && !newcar.GetComponent<moveController2>().win && GameObject.Find("car") != null)
-        {
-            newcar.transform.position = carPos;
-            newcar.transform.rotation = carRot;
-            newcar.GetComponent<moveController2>().isTrigger = false;
-            newcar.GetComponent<moveController2>().isMove = false;
-            newcar.GetComponent<moveController2>().isClickable = true;
-        }
-        
-        if (car && !car.GetComponent<moveController2>().win && GameObject.Find("car") != null)
-        {
-            car.transform.position = carPos;
-            car.transform.rotation = carRot;
-            car.GetComponent<moveController2>().isTrigger = false;
-            car.GetComponent<moveController2>().isMove = false;
-            car.GetComponent<moveController2>().isClickable = true;
-        }
-        if (car2 && !car2.GetComponent<moveController2>().win)
-        {
-            car2.transform.position = carPos2;
-            car2.transform.rotation = carRot2;
-            car2.GetComponent<moveController2>().isTrigger = false;
-            car2.GetComponent<moveController2>().isMove = false;
-            car2.GetComponent<moveController2>().isClickable = true;
-        }
-        if(bul && !bul.GetComponent<Buldozer>().win)
-        {
-            bul.transform.position = bulPos;
-            bul.transform.rotation = bulRot;
-            bul.GetComponent<Buldozer>().isTrigger = false;
-            bul.GetComponent<Buldozer>().isMove = false;
-            bul.GetComponent<Buldozer>().isClickable = true;
-            if(stone.transform.parent!= null)
-            {
-                stone.transform.parent = null;
-                stone.transform.position = stonePos;
-                stone.transform.rotation = stoneRot;
-                stone.GetComponent<Collider>().enabled = true;
-            }
-
-        }
-        if (GameObject.Find("brokenroad"))
-        {
-            GameObject.Find("brokenroad").GetComponent<BrokenRoad>().broken = false;
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
