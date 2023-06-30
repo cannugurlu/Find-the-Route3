@@ -21,8 +21,6 @@ public class moveController2 : MonoBehaviour
     public bool isAvailable = true;
     
 
-    // Start is called before the first frame update
-
     private void Awake()
     {
         if (SceneManager.GetActiveScene().buildIndex == 5)
@@ -34,11 +32,7 @@ public class moveController2 : MonoBehaviour
         buttonManager = GameObject.FindObjectOfType<ButtonManager>();
         konfeti.Stop();
     }
-    void Start()
-    {
-        
-    }
-
+ 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -53,7 +47,6 @@ public class moveController2 : MonoBehaviour
 
                     if (this.gameObject.name == objName)
                     {
-                        print("heyyo");
                         isMove = true;
                         isClickable = false;
                     }
@@ -64,7 +57,6 @@ public class moveController2 : MonoBehaviour
 
                     if (this.gameObject.name == objName)
                     {
-                        print("heyyo");
                         isMove = true;
                         isClickable = false;
                     }
@@ -76,7 +68,6 @@ public class moveController2 : MonoBehaviour
 
                     if (this.gameObject.name == objName)
                     {
-                        print("heyyo");
                         isMove = true;
                         isClickable = false;
                     }
@@ -94,7 +85,7 @@ public class moveController2 : MonoBehaviour
       
         }
         carYRot = transform.rotation.eulerAngles.y;
-        //print(isTrigger);
+     
     }
     
     void OnTriggerStay(Collider other)
@@ -112,14 +103,14 @@ public class moveController2 : MonoBehaviour
 
                 if (isAvailable)
                 {
-                    print("niye geliyon buraya");
                     this.gameObject.GetComponent<Rigidbody>().velocity = velocity * transform.forward * Time.deltaTime;
                     isTrigger = true;
                 }
                 else
                 {
-                    print("e buraya geldi");
+                    print("isAvailable falseoldu");
                     this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    print(this.gameObject.GetComponent<Rigidbody>().velocity);
                 }
             }
 
@@ -141,7 +132,7 @@ public class moveController2 : MonoBehaviour
     {
             this.gameObject.GetComponent<Rigidbody>().velocity = 0.0f * transform.forward * Time.deltaTime;
             isTrigger = false;
-            Invoke("triggerController", 0.0005f);
+          
         if (gameObject.name == "car")
         {
             if (other.gameObject.name == "finish")
@@ -170,7 +161,21 @@ public class moveController2 : MonoBehaviour
                 }
             }
         }
-       if (other.gameObject.tag == "down")
+        if (gameObject.name == "car3")
+        {
+            if (other.gameObject.name == "finish3")
+            {
+                buttonManager.carNumber--;
+                win = true;
+                if (buttonManager.carNumber == 0)
+                {
+                    konfeti.Play();
+                    Invoke("WinPanel", 1.5f);
+                    Invoke("nextLevel", 3f);
+                }
+            }
+        }
+        if (other.gameObject.tag == "down")
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
@@ -180,24 +185,24 @@ public class moveController2 : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        isAvailable= true;
+        
         if (other.gameObject.CompareTag("gate"))
         {
-
+            isAvailable = true;
             Color colorCar = transform.GetChild(1).GetComponent<MeshRenderer>().material.color;
             Color colorGate = other.gameObject.GetComponent<MeshRenderer>().material.color;
 
 
 
-            if (ColorsApproximatelyEqual(colorCar, colorGate, 0.5f))
+            if (ColorsApproximatelyEqual(colorCar, colorGate, 0.1f))
             {
                 print("Car color: " + colorCar);
                 print("Gate color: " + colorGate);
                 isAvailable = true;
+                print("is available true");
             }
             else
             {
-                print("is available false oldu");
                 isAvailable = false;
             }
         }
@@ -215,12 +220,10 @@ public class moveController2 : MonoBehaviour
 
                 if (Mathf.RoundToInt(yolYRot + carYRot) % 180 == 0)
                 {
-                print("saða dönülecek");
                 gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90.0f, transform.rotation.eulerAngles.z);
                 }
                 else
                 {
-                print("sola dönülecek");
                 gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 90.0f, transform.rotation.eulerAngles.z);
 
             }
@@ -250,14 +253,9 @@ public class moveController2 : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody>().velocity = 0.0f * transform.forward * Time.deltaTime;
             isTrigger = false;
 
-            Invoke("triggerController", 0.0005f);
         }
-
-
     }
     
-    
-
     void WinPanel()
     {
         winPanel.SetActive(true);
@@ -286,8 +284,7 @@ public class moveController2 : MonoBehaviour
         float rDiff = Mathf.Abs(color1.r - color2.r);
         float gDiff = Mathf.Abs(color1.g - color2.g);
         float bDiff = Mathf.Abs(color1.b - color2.b);
-        float aDiff = Mathf.Abs(color1.a - color2.a);
 
-        return rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance && aDiff <= tolerance;
+        return rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance;
     }
 }

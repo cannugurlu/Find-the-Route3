@@ -16,7 +16,8 @@ public class Buldozer : MonoBehaviour
     public bool win = false;
     ButtonManager buttonManager;
     public ParticleSystem konfeti;
-    // Start is called before the first frame update
+    public bool isAvailable = true;
+
 
     private void Awake()
     {
@@ -115,15 +116,35 @@ public class Buldozer : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("gate"))
+        {
+            isAvailable = true;
+            Color colorBul = transform.GetComponent<MeshRenderer>().material.color;
+            Color colorGate = other.gameObject.GetComponent<MeshRenderer>().material.color;
 
-            if (other.gameObject.tag == "yol")
+
+
+            if (ColorsApproximatelyEqual(colorBul, colorGate, 0.1f))
+            {
+                print("Car color: " + colorBul);
+                print("Gate color: " + colorGate);
+                isAvailable = true;
+                print("is available true");
+            }
+            else
+            {
+                isAvailable = false;
+            }
+        }
+
+        if (other.gameObject.tag == "yol")
             {
                 isTrigger = true;
             }
         
         if (other.gameObject.tag == "turn")
         {
-            //Destroy(other.gameObject);
+           
             yolYRot = other.transform.rotation.eulerAngles.y;
 
             if (Mathf.RoundToInt(yolYRot + carYRot) % 180 == 0)
@@ -154,14 +175,13 @@ public class Buldozer : MonoBehaviour
         {
             print("ssss");
             collision.transform.SetParent(transform);
-            //collision.transform.rotation = transform.rotation;
             collision.gameObject.GetComponent<Collider>().enabled = false;
         }
         if (collision.gameObject.tag == "home")
         {
             this.gameObject.GetComponent<Rigidbody>().velocity = 0.0f * transform.forward * Time.deltaTime;
             isTrigger = false;
-            Invoke("triggerController", 0.0005f);
+   
         }
     }
 
@@ -193,5 +213,14 @@ public class Buldozer : MonoBehaviour
         Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
 
         return hit;
+    }
+
+    private bool ColorsApproximatelyEqual(Color color1, Color color2, float tolerance)
+    {
+        float rDiff = Mathf.Abs(color1.r - color2.r);
+        float gDiff = Mathf.Abs(color1.g - color2.g);
+        float bDiff = Mathf.Abs(color1.b - color2.b);
+
+        return rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance;
     }
 }

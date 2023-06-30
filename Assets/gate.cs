@@ -22,13 +22,20 @@ public class gate : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().buildIndex == 13)
         {
-            colors = new string[] { "B02325", "0E11CF", "FF4900" };
+            colors = new string[] { "B02325", "0E11CF", "FF5100" };
         }
         else if (SceneManager.GetActiveScene().buildIndex == 14)
         {
             colors = new string[] { "FFF02C", "0E11CF" };
         }
-
+        else if (SceneManager.GetActiveScene().buildIndex == 17)
+        {
+            colors = new string[] { "B02325", "0E11CF", "FF5100" };
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 18)
+        {
+            colors = new string[] { "FFF02C", "0E11CF",  };
+        }
 
         UnityEngine.Color color;
         if (ColorUtility.TryParseHtmlString("#" + colors[0], out color))
@@ -51,7 +58,7 @@ public class gate : MonoBehaviour
 
     IEnumerator ChangeColor()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         if (i == colors.Length)
         {
             i = 0;
