@@ -201,6 +201,8 @@ public class Buldozer : MonoBehaviour
     public void nextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SaveLevel();
+
     }
 
     RaycastHit CastRay()
@@ -222,5 +224,11 @@ public class Buldozer : MonoBehaviour
         float bDiff = Mathf.Abs(color1.b - color2.b);
 
         return rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance;
+    }
+
+    void SaveLevel()
+    {
+        PlayerPrefs.SetInt("SavedLevel", moveController2.level + 1);
+        PlayerPrefs.Save();
     }
 }

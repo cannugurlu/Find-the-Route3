@@ -55,7 +55,6 @@ public class ButtonManager : MonoBehaviour
         
     }
 
-
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -64,7 +63,14 @@ public class ButtonManager : MonoBehaviour
 
     public void nextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (PlayerPrefs.GetInt("SavedLevel") == null || PlayerPrefs.GetInt("SavedLevel") == 0) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else SceneManager.LoadScene(PlayerPrefs.GetInt("SavedLevel"));
+
+    }
+
+    public void clearSavedLevel()
+    {
+        PlayerPrefs.SetInt("SavedLevel", 0);
     }
 
     public void menu()

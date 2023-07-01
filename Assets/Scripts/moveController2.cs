@@ -19,6 +19,7 @@ public class moveController2 : MonoBehaviour
     ButtonManager buttonManager;
     public ParticleSystem konfeti;
     public bool isAvailable = true;
+    public static int level,savedLevel;
     
 
     private void Awake()
@@ -35,6 +36,9 @@ public class moveController2 : MonoBehaviour
  
     void Update()
     {
+        level = SceneManager.GetActiveScene().buildIndex;
+        //print(PlayerPrefs.GetInt("SavedLevel"));
+        //print(level);
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit = CastRay();
@@ -264,6 +268,7 @@ public class moveController2 : MonoBehaviour
     public void nextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SaveLevel();
     }
 
 
@@ -286,5 +291,20 @@ public class moveController2 : MonoBehaviour
         float bDiff = Mathf.Abs(color1.b - color2.b);
 
         return rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance;
+    }
+
+    void SaveLevel()
+    {
+        PlayerPrefs.SetInt("SavedLevel", level+1);
+        PlayerPrefs.Save();
+    }
+
+    void LoadLevel()
+    {
+        int savedLevel = PlayerPrefs.GetInt("SavedLevel");
+        if(savedLevel != level)
+        {
+            SceneManager.LoadScene(savedLevel);
+        }
     }
 }
