@@ -21,6 +21,7 @@ TagManager:
   - down
   - gate
   - bas3
+  - Music
   layers:
   - Default
   - TransparentFX
