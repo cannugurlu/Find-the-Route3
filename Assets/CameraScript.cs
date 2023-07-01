@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraScript : MonoBehaviour
 {
-    //public SpriteRenderer outline;
-  
-    // Use this for initialization
     void Start()
     {
-        float screenRatio = (float)Screen.width / (float)Screen.height;
-        float targetRatio =1080 / 1920;
-
-        if (screenRatio >= targetRatio)
+        Camera camera= GetComponent<Camera>(); 
+        float screenRatio = (float)Screen.height / (float)Screen.width;
+        float targetRatio =1920f / 1080;
+        
+        if(screenRatio > targetRatio)
         {
-            Camera.main.orthographicSize = 1920 / 2;
+            camera.fieldOfView = 62;
+        }
+        else if(screenRatio == targetRatio)
+        {
+            camera.fieldOfView = 52;
+                
         }
         else
         {
-            float differenceInSize = targetRatio / screenRatio;
-            Camera.main.orthographicSize = 1920 / 2 * differenceInSize;
+            camera.fieldOfView = 40;
         }
     }
 }
