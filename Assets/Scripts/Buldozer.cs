@@ -200,9 +200,21 @@ public class Buldozer : MonoBehaviour
 
     public void nextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SaveLevel();
+        if ((PlayerPrefs.GetInt("SavedLevel") == null || PlayerPrefs.GetInt("SavedRandomLevel") == 0) && SceneManager.GetActiveScene().buildIndex != 18)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            int rand = Random.Range(1, 19);
 
+
+
+            PlayerPrefs.SetInt("SavedRandomLevel", rand);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene(rand);
+        }
+        SaveLevel();
     }
 
     RaycastHit CastRay()

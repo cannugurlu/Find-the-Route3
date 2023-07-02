@@ -52,13 +52,13 @@ public class ButtonManager : MonoBehaviour
             stoneRot = stone.transform.rotation;
 
         }
-        if (PlayerPrefs.GetInt("SavedLevel") < 18)
+        if (PlayerPrefs.GetInt("SavedLevel") < 19)
         {
             leveltext.text = "Level " + SceneManager.GetActiveScene().buildIndex.ToString();
         }
         else
         {
-            leveltext.text = "Level " + PlayerPrefs.GetInt("SavedLevel");
+            leveltext.text = "Level " + (PlayerPrefs.GetInt("SavedLevel"));
         }
         
     }
@@ -72,13 +72,20 @@ public class ButtonManager : MonoBehaviour
     public void nextLevel()
     {
         if (PlayerPrefs.GetInt("SavedLevel") == null || PlayerPrefs.GetInt("SavedLevel") == 0) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        else SceneManager.LoadScene(PlayerPrefs.GetInt("SavedLevel"));
+        else if (PlayerPrefs.GetInt("SavedLevel") < 19) {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedLevel"));
+                }
+        else
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedRandomLevel"));
+        }
 
     }
 
     public void clearSavedLevel()
     {
         PlayerPrefs.SetInt("SavedLevel", 0);
+        PlayerPrefs.SetInt("SavedRandomLevel", 0);
     }
 
     public void menu()

@@ -3164,7 +3164,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1530696332464048802, guid: 4226d478aa1dd4e4fa5f7a97c8f25e75, type: 3}
       propertyPath: m_Size.z
-      value: 0.19157396
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 1530696332464048802, guid: 4226d478aa1dd4e4fa5f7a97c8f25e75, type: 3}
       propertyPath: m_Center.x
@@ -4647,6 +4647,7 @@ MonoBehaviour:
   carNumber: 3
   leveltext: {fileID: 521504623}
   carPrefab: {fileID: 0}
+  settingsPanel: {fileID: 0}
 --- !u!1 &1456367275
 GameObject:
   m_ObjectHideFlags: 0

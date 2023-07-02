@@ -32,11 +32,20 @@ public class moveController2 : MonoBehaviour
 
         buttonManager = GameObject.FindObjectOfType<ButtonManager>();
         konfeti.Stop();
+        if (PlayerPrefs.GetInt("SavedLevel") < 19)
+        {
+            level = SceneManager.GetActiveScene().buildIndex;
+        }
+        else
+        {
+            level = PlayerPrefs.GetInt("SavedLevel");
+        }
+        
     }
  
     void Update()
     {
-        level = SceneManager.GetActiveScene().buildIndex;
+        
         //print(PlayerPrefs.GetInt("SavedLevel"));
         //print(level);
         if (Input.GetMouseButtonDown(0))
@@ -267,13 +276,16 @@ public class moveController2 : MonoBehaviour
     }
     public void nextLevel()
     {
-        if(SceneManager.GetActiveScene().buildIndex < 18)
+        if((PlayerPrefs.GetInt("SavedLevel") == null || PlayerPrefs.GetInt("SavedRandomLevel") == 0) && SceneManager.GetActiveScene().buildIndex != 18)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
-            int rand = Random.Range(1, 19);
+            int rand = Random.Range(1, 19); 
+
+            PlayerPrefs.SetInt("SavedRandomLevel", rand);
+            PlayerPrefs.Save();
             SceneManager.LoadScene(rand);
         }
         SaveLevel();
