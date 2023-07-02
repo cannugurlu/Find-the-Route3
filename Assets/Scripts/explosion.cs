@@ -6,12 +6,19 @@ using UnityEngine;
 public class explosion : MonoBehaviour
 {
     public ParticleSystem boom;
+    [SerializeField] private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource=GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "car")
         {
             Patlama(collision.gameObject);
             StartCoroutine(patlamaDurdur());
+            audioSource.Play();
         }
     }
 

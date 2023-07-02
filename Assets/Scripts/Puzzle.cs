@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Puzzle : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
     int[] rotations = { 270, 180, 90, 0 };
     GameObject[] cars;
 
     void Start()
     {
+        audioSource=GetComponent<AudioSource>();
         int rand = Random.Range(0, rotations.Length);
         transform.eulerAngles = new UnityEngine.Vector3(0, rotations[rand], 0);
         cars = GameObject.FindGameObjectsWithTag("Car");
@@ -42,9 +44,10 @@ public class Puzzle : MonoBehaviour
          {
 
             transform.Rotate(new UnityEngine.Vector3(0, 90, 0));
+            audioSource.Play();
 
         }
-        
+
 
     }
 }

@@ -25,6 +25,7 @@ public class ButtonManager : MonoBehaviour
     public TextMeshProUGUI leveltext;
     public GameObject carPrefab;
     GameObject newcar;
+    public GameObject settingsPanel;
     
 
     private void Awake()
@@ -85,5 +86,12 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-
+    public void settings()
+    {
+        settingsPanel.SetActive(true);
+    }
+    public void closeSettings()
+    {
+        settingsPanel.SetActive(false);
+    }
 }

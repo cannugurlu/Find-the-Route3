@@ -53,6 +53,7 @@ public class BrokenRoad : MonoBehaviour
     {
         broken = true;
         dust.Play();
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
     }
 }
 
