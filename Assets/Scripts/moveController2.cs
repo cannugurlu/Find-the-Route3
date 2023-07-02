@@ -267,7 +267,15 @@ public class moveController2 : MonoBehaviour
     }
     public void nextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(SceneManager.GetActiveScene().buildIndex < 18)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            int rand = Random.Range(1, 19);
+            SceneManager.LoadScene(rand);
+        }
         SaveLevel();
     }
 

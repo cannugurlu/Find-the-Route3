@@ -34,7 +34,7 @@ public class gate : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().buildIndex == 18)
         {
-            colors = new string[] { "FFF02C", "0E11CF",  };
+            colors = new string[] { "0E11CF", "FFF02C",  };
         }
 
         UnityEngine.Color color;

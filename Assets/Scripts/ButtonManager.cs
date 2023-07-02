@@ -51,7 +51,14 @@ public class ButtonManager : MonoBehaviour
             stoneRot = stone.transform.rotation;
 
         }
-        leveltext.text = "Level " + SceneManager.GetActiveScene().buildIndex.ToString();
+        if (PlayerPrefs.GetInt("SavedLevel") < 18)
+        {
+            leveltext.text = "Level " + SceneManager.GetActiveScene().buildIndex.ToString();
+        }
+        else
+        {
+            leveltext.text = "Level " + PlayerPrefs.GetInt("SavedLevel");
+        }
         
     }
 
