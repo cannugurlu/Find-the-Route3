@@ -2289,6 +2289,7 @@ MonoBehaviour:
   carNumber: 1
   leveltext: {fileID: 554447235}
   carPrefab: {fileID: 0}
+  settingsPanel: {fileID: 0}
 --- !u!114 &1361502107
 MonoBehaviour:
   m_ObjectHideFlags: 0
