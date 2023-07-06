@@ -17,11 +17,12 @@ public class Buldozer : MonoBehaviour
     ButtonManager buttonManager;
     public ParticleSystem konfeti;
     public bool isAvailable = true;
+    public AudioSource confettiSound;
 
 
     private void Awake()
     {
-
+        confettiSound = GetComponent<AudioSource>();    
         buttonManager = GameObject.FindObjectOfType<ButtonManager>();
         konfeti.Stop();
     }
@@ -107,6 +108,7 @@ public class Buldozer : MonoBehaviour
             if (buttonManager.carNumber == 0)
             {
                 konfeti.Play();
+                confettiSound.Play();
                 Invoke("WinPanel", 1.5f);
                 Invoke("nextLevel", 3f);
             }

@@ -20,10 +20,12 @@ public class moveController2 : MonoBehaviour
     public ParticleSystem konfeti;
     public bool isAvailable = true;
     public static int level,savedLevel;
+    public AudioSource confettiSound;
     
 
     private void Awake()
     {
+        confettiSound = GetComponent<AudioSource>();
         if (SceneManager.GetActiveScene().buildIndex == 5)
         {
             konfeti = GameObject.Find("konfeti").GetComponent<ParticleSystem>();
@@ -155,6 +157,7 @@ public class moveController2 : MonoBehaviour
                 if (buttonManager.carNumber == 0)
                 {
                     konfeti.Play();
+                    confettiSound.Play();
                     Invoke("WinPanel", 1.5f);
                     Invoke("nextLevel", 3f);
                 }
@@ -169,6 +172,7 @@ public class moveController2 : MonoBehaviour
                 if (buttonManager.carNumber == 0)
                 {
                     konfeti.Play();
+                    confettiSound.Play();
                     Invoke("WinPanel", 1.5f);
                     Invoke("nextLevel", 3f);
                 }
@@ -183,6 +187,7 @@ public class moveController2 : MonoBehaviour
                 if (buttonManager.carNumber == 0)
                 {
                     konfeti.Play();
+                    confettiSound.Play();
                     Invoke("WinPanel", 1.5f);
                     Invoke("nextLevel", 3f);
                 }
