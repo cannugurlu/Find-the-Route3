@@ -22,7 +22,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            camera.fieldOfView = 40;
+            camera.fieldOfView = 49;
         }
     }
 }

@@ -203,7 +203,8 @@ public class moveController2 : MonoBehaviour
         {
             isAvailable = true;
             Color colorCar = transform.GetChild(1).GetComponent<MeshRenderer>().material.color;
-            Color colorGate = other.gameObject.GetComponent<MeshRenderer>().material.color;
+            Color colorGate = other.gameObject.transform.GetChild(0).
+                GetComponent<MeshRenderer>().material.color;
 
 
 

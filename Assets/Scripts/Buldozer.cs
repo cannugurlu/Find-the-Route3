@@ -120,7 +120,8 @@ public class Buldozer : MonoBehaviour
         {
             isAvailable = true;
             Color colorBul = transform.GetComponent<MeshRenderer>().material.color;
-            Color colorGate = other.gameObject.GetComponent<MeshRenderer>().material.color;
+            Color colorGate = other.gameObject.transform.GetChild(0).
+                 GetComponent<MeshRenderer>().material.color;
 
 
 

@@ -339,6 +339,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1323890129361565141, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323890129361565141, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323890129361565141, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323890129361565141, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -357,6 +369,10 @@ PrefabInstance:
     - target: {fileID: 1323890129361565141, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323890129361565141, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5684380b171a9c4ab8c143a325402fa, type: 3}
@@ -2358,6 +2374,7 @@ MonoBehaviour:
   carNumber: 1
   leveltext: {fileID: 604275959}
   carPrefab: {fileID: 0}
+  settingsPanel: {fileID: 0}
 --- !u!114 &1361502107
 MonoBehaviour:
   m_ObjectHideFlags: 0

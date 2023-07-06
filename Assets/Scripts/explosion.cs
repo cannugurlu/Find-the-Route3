@@ -14,7 +14,7 @@ public class explosion : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "car")
+        if(collision.gameObject.tag == "Car")
         {
             Patlama(collision.gameObject);
             StartCoroutine(patlamaDurdur());
