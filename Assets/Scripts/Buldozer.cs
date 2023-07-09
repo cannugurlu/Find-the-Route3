@@ -18,11 +18,10 @@ public class Buldozer : MonoBehaviour
     public ParticleSystem konfeti;
     public bool isAvailable = true;
     public AudioSource confettiSound;
-
+    public AudioSource levelEndSound;
 
     private void Awake()
-    {
-        confettiSound = GetComponent<AudioSource>();    
+    {   
         buttonManager = GameObject.FindObjectOfType<ButtonManager>();
         konfeti.Stop();
     }
@@ -109,6 +108,7 @@ public class Buldozer : MonoBehaviour
             {
                 konfeti.Play();
                 confettiSound.Play();
+                levelEndSound.Play();
                 Invoke("WinPanel", 1.5f);
                 Invoke("nextLevel", 3f);
             }

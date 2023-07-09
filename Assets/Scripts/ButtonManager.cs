@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -26,7 +27,12 @@ public class ButtonManager : MonoBehaviour
     public GameObject carPrefab;
     GameObject newcar;
     public GameObject settingsPanel;
-    
+    public RectTransform panelRectTransform;
+    public RectTransform textRectTransform;
+    public RectTransform buttonRectTransform;
+    public RectTransform button2RectTransform;
+
+
 
     private void Awake()
     {
@@ -95,10 +101,18 @@ public class ButtonManager : MonoBehaviour
 
     public void settings()
     {
-        settingsPanel.SetActive(true);
+        panelRectTransform.DOAnchorPos(new Vector2(0.0f,179.0f), 0.4f);
+        buttonRectTransform.DOAnchorPos(new Vector2(0.0f, 170.0f), 0.2f);
+        textRectTransform.DOAnchorPos(new Vector2(106.0f, -160.0f), 0.4f);
+        button2RectTransform.DOAnchorPos(new Vector2(-270, -46.8999f), 0.4f);
     }
     public void closeSettings()
     {
-        settingsPanel.SetActive(false);
+        panelRectTransform.DOAnchorPos(new Vector2(1100.0f, 179.0f), 0.4f).OnComplete(()=>
+        panelRectTransform.anchoredPosition=new Vector2(-1100,179));
+
+        buttonRectTransform.DOAnchorPos(new Vector2(0.0f, -36.0f), 0.2f);
+        textRectTransform.DOAnchorPos(new Vector2(106.0f, -328.0f), 0.4f);
+        button2RectTransform.DOAnchorPos(new Vector2(36.09998f, -46.8999f), 0.4f);
     }
 }
