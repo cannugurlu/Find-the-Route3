@@ -115,4 +115,6 @@ public class ButtonManager : MonoBehaviour
         textRectTransform.DOAnchorPos(new Vector2(106.0f, -328.0f), 0.4f);
         button2RectTransform.DOAnchorPos(new Vector2(36.09998f, -46.8999f), 0.4f);
     }
+
+    
 }
