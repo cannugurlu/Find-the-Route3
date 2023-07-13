@@ -112,7 +112,7 @@ public class moveController2 : MonoBehaviour
         {
             
            
-            if ((other.gameObject.tag == "yol" || other.gameObject.tag == "up" || other.gameObject.tag == "forward" || other.gameObject.tag == "down"))
+            if ((other.gameObject.tag == "yol" || other.gameObject.tag == "bridge" || other.gameObject.tag == "forward" ))
             {
              
 
@@ -196,9 +196,13 @@ public class moveController2 : MonoBehaviour
                 }
             }
         }
-        if (other.gameObject.tag == "down")
+        if (other.gameObject.tag == "bridge")
         {
-            gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            if (gameObject.transform.position.y < 0.25)
+            {
+                gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+            }
 
         }
 
@@ -250,22 +254,26 @@ public class moveController2 : MonoBehaviour
 
             }
         }
-
-        if(other.gameObject.tag == "up")
+        if (other.gameObject.tag == "bridge")
         {
-            gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x-10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-            
+            if (gameObject.transform.position.y < 0.25)
+            {
+                gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+            }
+            else
+            {
+                gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+            }
+
         }
         if (other.gameObject.tag == "forward")
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         }
-        if (other.gameObject.tag == "down")
-        {
-            gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-
-        }
+      
     }
 
     private void OnCollisionEnter(Collision collision)

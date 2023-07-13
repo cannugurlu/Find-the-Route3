@@ -22,6 +22,7 @@ TagManager:
   - gate
   - bas3
   - Music
+  - bridge
   layers:
   - Default
   - TransparentFX
